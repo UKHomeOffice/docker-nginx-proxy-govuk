@@ -1,0 +1,3 @@
+<!--#set var="title" value="Request denied" -->
+<!--#set var="partial" value="418-request-denied" -->
+<!--#include file="template.shtml" -->
