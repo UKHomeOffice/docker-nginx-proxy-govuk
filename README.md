@@ -16,8 +16,8 @@ pages. - Please read [the documentation for that image].
 ## Versioning
 
 This image will be versioned alongside the version of
-[docker-nginx-proxy] it consumes. For the versions available, see the
-[tags on this repository].
+[docker-nginx-proxy] it consumes, with a minor build number taggen on
+the end. For the versions available, see the [tags on this repository].
 
 ## Authors
 
