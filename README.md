@@ -1,5 +1,7 @@
 # GovUK-branded NGINX reverse proxy
 
+[![Docker Repository on Quay](https://quay.io/repository/ukhomeofficedigital/nginx-proxy-govuk/status "Docker Repository on Quay")](https://quay.io/repository/ukhomeofficedigital/nginx-proxy-govuk)
+
 Simply a version of [docker-nginx-proxy] with GovUK-branded error
 pages. - Please read [the documentation for that image].
 
