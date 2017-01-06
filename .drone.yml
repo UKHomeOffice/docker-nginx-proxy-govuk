@@ -1,0 +1,45 @@
+pipeline:
+
+  build_image_pr:
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - docker build -t nginx-proxy-govuk .
+    when:
+      event: pull_request
+
+  build_image_tag:
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - docker build -t nginx-proxy-govuk:${DRONE_TAG} .
+    when:
+      event: tag
+
+  push_image:
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - REPO="artifactory-internal.digital.homeoffice.gov.uk"
+      - BASE="/"
+      - NAME="nginx-proxy-govuk"
+      - FULL_NAME="${REPO}${BASE}${NAME}"
+      - DOCKER_USERNAME="lev-web-robot"
+      - docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${REPO}"
+      - docker tag nginx-proxy-govuk:${DRONE_TAG} "${FULL_NAME}:${DRONE_TAG}"
+      - docker tag nginx-proxy-govuk:${DRONE_TAG} "${FULL_NAME}:latest"
+      - docker push "${FULL_NAME}:${DRONE_TAG}"
+      - docker push "${FULL_NAME}:latest"
+    when:
+      event: tag
+
+services:
+  dind:
+    image: docker:1.11-dind
+    privileged: true
+    command:
+      - "-s"
+      - "overlay"
