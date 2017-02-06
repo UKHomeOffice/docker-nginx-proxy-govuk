@@ -48,7 +48,7 @@
   <body class="">
     <script type="text/javascript">document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
-    
+
 
     <div id="skiplink-container">
       <div>
@@ -68,7 +68,7 @@
       </div>
     </header>
     <!--end header-->
-    
+
 
 
     <div id="global-header-bar">
@@ -88,10 +88,12 @@
         <!--#include file="partials/$partial.shtml" -->
         <a href="javascript: window.history.back()" title="Back" class="button">Back</a>
         <a href="/" title="Start again" class="button">Start again</a>
-        <p style="color: #6F777B;">
-          Generated at <!--#config timefmt="%H:%M:%S %Z" --><!--#echo var="date_local" -->
-          on <!--#config timefmt="%A, %d %B %Y" --><!--#echo var="date_local" -->.
-        </p>
+        <!--#if expr="$verbose_error_pages = TRUE" -->
+          <p style="color: #6F777B;">
+            Generated at <!--#config timefmt="%H:%M:%S %Z" --><!--#echo var="date_local" -->
+            on <!--#config timefmt="%A, %d %B %Y" --><!--#echo var="date_local" -->.
+          </p>
+        <!--#endif -->
       </div>
     </div>
   </main>

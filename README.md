@@ -5,10 +5,13 @@
 Simply a version of [docker-nginx-proxy] with GovUK-branded error
 pages. - Please read [the documentation for that image].
 
-**Warning:** This also adds debugging information to 418 (Teapot) pages.
-             You might not want this if you want to take the small
-             advantage of 'security through obscurity'. Feel free to
-             mount in your own SSI 'partial' to remove this information.
+## Debugging
+To have the template render with more debugging information set `VERBOSE_ERROR_PAGES` to `TRUE`.
+
+In the terminal
+```
+docker run -e "VERBOSE_ERROR_PAGES=TRUE" -p "10443:10443" nginx-proxy-govuk
+```
 
 ## Find Us
 

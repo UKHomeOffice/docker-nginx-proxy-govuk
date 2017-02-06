@@ -1,3 +1,7 @@
-<!--#set var="title" value="Request denied" -->
+<!--#if expr="$verbose_error_pages = TRUE" -->
+  <!--#set var="title" value="Request denied" -->
+<!--#else -->
+  <!--#set var="title" value="There is a problem" -->
+<!--#endif -->
 <!--#set var="partial" value="418-request-denied" -->
 <!--#include file="template.shtml" -->
