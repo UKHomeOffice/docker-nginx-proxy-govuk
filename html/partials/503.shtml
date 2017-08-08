@@ -1,9 +1,10 @@
+<h2>503 Service unavailable</h2>
 <p>
-  Sorry, we are not currently able to fulfil your response. There are
-  two main situation in which this can occur:
+  Sorry, we can’t carry out your request at the moment. There are
+  two main situations in which this can occur:
 </p>
 <ol>
-  <li>Our service down for maintenance</li>
+  <li>Our service is down for maintenance</li>
   <li>You are making requests too rapidly</li>
 </ol>
 <p>Please try again later.</p>
