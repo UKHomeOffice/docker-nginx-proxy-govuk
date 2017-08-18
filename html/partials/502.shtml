@@ -1,1 +1,3 @@
-<p>An invalid response was received from the upstream service.</p>
+<h2>502 Bad gateway</h2>
+<p>There's a technical problem.</p>
+<p>We’ll try and fix this as soon as possible.</p>
