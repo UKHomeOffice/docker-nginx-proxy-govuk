@@ -1,3 +1,10 @@
-<h2>504 Gateway timeout</h2>
-<p>We’re having a technical problem.</p>
-<p>Please try again in a few moments.</p>
+<p><strong><h1></h1>Something's gone wrong with our servers</h1></strong></p>
+<p>We're fixing this as quickly as possible.</p>
+<p>Please try again.</p>
+<p>If you're still having difficulty:</p>
+<!--#if expr="$display_contact_details = TRUE" -->
+<ul>
+	<li>phone the IT service desk on 0845 00 00 050 or;</li>
+	<li>email ITServiceDesk@homeoffice.gsi.gov.uk</li>
+</ul>
+<!--#endif -->
