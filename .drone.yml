@@ -1,55 +1,51 @@
 pipeline:
 
   build_image_pr:
-    image: docker:1.11
+    image: docker:17.09.0-ce
     environment:
-      - DOCKER_HOST=tcp://127.0.0.1:2375
+      - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
       - docker build -t nginx-proxy-govuk .
     when:
       event: pull_request
 
   build_image_tag:
-    image: docker:1.11
+    image: docker:17.09.0-ce
     environment:
-      - DOCKER_HOST=tcp://127.0.0.1:2375
+      - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
-      - docker build -t "nginx-proxy-govuk:${DRONE_TAG}" .
+      - docker build -t "nginx-proxy-govuk:$${DRONE_TAG}" .
     when:
       event: tag
 
   push_image:
-    image: docker:1.11
+    image: docker:17.09.0-ce
+    secrets:
+      - docker_password
     environment:
-      - DOCKER_HOST=tcp://127.0.0.1:2375
+      - DOCKER_HOST=tcp://172.17.0.1:2375
       - DOCKER_IMAGE=nginx-proxy-govuk
       - DOCKER_REPO=artifactory-internal.digital.homeoffice.gov.uk
       - DOCKER_BASEDIR=/
       - DOCKER_USERNAME=lev-web-robot
     commands:
-      - docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REPO}"
-      - ./publish.sh "nginx-proxy-govuk:${DRONE_TAG}" "${DOCKER_REPO}${DOCKER_BASEDIR}${DOCKER_IMAGE}" "${DRONE_TAG}"
+      - docker login -u="$${DOCKER_USERNAME}" -p="$${DOCKER_PASSWORD}" "$${DOCKER_REPO}"
+      - ./publish.sh "nginx-proxy-govuk:$${DRONE_TAG}" "$${DOCKER_REPO}$${DOCKER_BASEDIR}$${DOCKER_IMAGE}" "$${DRONE_TAG}"
     when:
       event: tag
 
   push_image_to_quay:
-    image: docker:1.11
+    image: docker:17.09.0-ce
+    secrets:
+      - docker_quay_password
     environment:
-      - DOCKER_HOST=tcp://127.0.0.1:2375
+      - DOCKER_HOST=tcp://172.17.0.1:2375
       - DOCKER_IMAGE=nginx-proxy-govuk
       - DOCKER_REPO=quay.io
       - DOCKER_BASEDIR=/ukhomeofficedigital/
       - DOCKER_USERNAME=ukhomeofficedigital+nginx_proxy
     commands:
-      - docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_QUAY_PASSWORD}" "${DOCKER_REPO}"
-      - ./publish.sh "nginx-proxy-govuk:${DRONE_TAG}" "${DOCKER_REPO}${DOCKER_BASEDIR}${DOCKER_IMAGE}" "${DRONE_TAG}"
+      - docker login -u="$${DOCKER_USERNAME}" -p="$${DOCKER_QUAY_PASSWORD}" "$${DOCKER_REPO}"
+      - ./publish.sh "nginx-proxy-govuk:$${DRONE_TAG}" "$${DOCKER_REPO}$${DOCKER_BASEDIR}$${DOCKER_IMAGE}" "$${DRONE_TAG}"
     when:
       event: tag
-
-services:
-  dind:
-    image: docker:1.13-dind
-    privileged: true
-    command:
-      - "-s"
-      - "overlay"
