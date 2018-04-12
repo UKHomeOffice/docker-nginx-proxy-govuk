@@ -1,3 +1,3 @@
-FROM quay.io/ukhomeofficedigital/nginx-proxy:v3.2.6
+FROM quay.io/ukhomeofficedigital/nginx-proxy:v3.2.8
 
 ADD ./html/ /usr/local/openresty/nginx/html/
