@@ -13,6 +13,10 @@ In the terminal
 docker run -e "VERBOSE_ERROR_PAGES=TRUE" -p "10443:10443" nginx-proxy-govuk
 ```
 
+## Additional error codes
+By default, [docker-nginx-proxy] only intercepts a subset of HTTP error codes.
+You can override the behaviour with `REDIRECT_ERROR_CODES`.
+
 ## Find Us
 
 * [GitHub]

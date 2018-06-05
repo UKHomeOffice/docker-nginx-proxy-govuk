@@ -1,0 +1,3 @@
+<!--#set var="title" value="Forbidden" -->
+<!--#set var="partial" value="403" -->
+<!--#include file="template.shtml" -->
