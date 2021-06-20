@@ -32,13 +32,13 @@ check_arg "${SRC}" "SRC"
 check_arg "${DEST}" "DEST"
 check_arg "${VERSION}" "VERSION"
 
-PATCH=`echo ${VERSION} | awk -F '.' '{print $1"."$2"."$3}'`
-MINOR=`echo ${PATCH} | awk -F '.' '{print $1"."$2}'`
-MAJOR=`echo ${MINOR} | awk -F '.' '{print $1}'`
+PATCH=$(echo "${VERSION}" | awk -F '.' '{print $1"."$2"."$3}')
+MINOR=$(echo "${PATCH}" | awk -F '.' '{print $1"."$2}')
+MAJOR=$(echo "${MINOR}" | awk -F '.' '{print $1}')
 
 tag_n_push() {
     FULL_NAME="${DEST}:${1}"
-    echo -n "Publishing '${SRC}' as '${FULL_NAME}'..."
+    printf "Publishing '%s' as '%s'..." "${SRC}" "${FULL_NAME}"
     docker tag "${SRC}" "${FULL_NAME}"
     docker push "${FULL_NAME}"
     echo " done."
