@@ -3,6 +3,10 @@
   <!--#set var="partial" value="418-request-denied" -->
 <!--#else -->
   <!--#set var="title" value="Sorry, something went wrong" -->
-  <!--#set var="partial" value="50x" -->
+  <p>Text entered appears suspicious. This is likely due to unusual repeat or individual special characters, i.e. @@ or && or |. Please delete any unnecessary special characters and try again.</p>
+<!--#endif -->
+
+<!--#if expr="${FEEDBACK_EMAIL}" -->
+  <p>If this problem persists, please contact us on <!--#echo var="FEEDBACK_EMAIL" --> so we can remedy any issues and improve our service.</p>
 <!--#endif -->
 <!--#include file="template.shtml" -->
